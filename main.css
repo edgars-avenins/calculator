@@ -1,0 +1,12 @@
+#calculator {
+    width: 250px;
+    height: 350px;
+    background-color: darkcyan;
+    margin: 0 auto
+}
+
+button {
+    height: 45px;
+    width: 20%;
+    margin: 5px
+}
