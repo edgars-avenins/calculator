@@ -87,7 +87,7 @@ function displayResult(e){
             operation.value = result.value
             result.value = ''
         }else
-        result.value = eval(operation.value)
+        result.value = eval(operation.value) /// ye ye superbad practice I know. 
     }
 }
 
