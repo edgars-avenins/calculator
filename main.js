@@ -9,10 +9,56 @@ var buttonArr = [
     '7', '8', '9', '÷',
     '4', '5', '6', 'X',
     '1', '2', '3', '-',
-    '0', '.', '=', '+'
+    '0', '.', '=', '+',
+    'ON', 'OFF'
 ]
 
+
 initiateCalculatorButtons()
+
+var buttons = document.getElementsByTagName('button')
+addONListener()
+
+
+
+
+function addListeners(){
+    for (let i = 0; i < buttons.length; i++) {
+        if(buttons[i].value === '='){
+            buttons[i].addEventListener('click', displayResult)
+        }else if(buttons[i].value === 'C'){
+            buttons[i].addEventListener('click', resetOutputFields)
+        }else if(buttons[i].value === 'x<sup>2</sup>'){
+            buttons[i].addEventListener('click', xPower2)
+        }else if(buttons[i].value === '&radic;x'){
+            buttons[i].addEventListener('click', sqrtX)
+        }else if(buttons[i].value === '%'){
+            buttons[i].addEventListener('click', percentage)
+        }else if(buttons[i].value === 'OFF'){
+            buttons[i].addEventListener('click', deactivateCalculator)
+        }
+        else buttons[i].addEventListener('click', displayOperation)
+    }
+}
+
+function removeListeners(){
+    for (let i = 0; i < buttons.length; i++) {
+        if(buttons[i].value === '='){
+            buttons[i].removeEventListener('click', displayResult)
+        }else if(buttons[i].value === 'C'){
+            buttons[i].removeEventListener('click', resetOutputFields)
+        }else if(buttons[i].value === 'x<sup>2</sup>'){
+            buttons[i].removeEventListener('click', xPower2)
+        }else if(buttons[i].value === '&radic;x'){
+            buttons[i].removeEventListener('click', sqrtX)
+        }else if(buttons[i].value === '%'){
+            buttons[i].removeEventListener('click', percentage)
+        }else if(buttons[i].value === 'OFF'){
+            buttons[i].removeEventListener('click', deactivateCalculator)
+        }
+        else buttons[i].removeEventListener('click', displayOperation)
+    }
+}
 
 function initiateCalculatorButtons(){
 
@@ -23,19 +69,6 @@ function initiateCalculatorButtons(){
         else if(buttonArr[i] === 'X') node.value = '*'
         else node.value = buttonArr[i]
         node.innerHTML = buttonArr[i]
-
-        if(buttonArr[i] === '='){
-            node.addEventListener('click', displayResult)
-        }else if(buttonArr[i] === 'C'){
-            node.addEventListener('click', resetOutputFields)
-        }else if(buttonArr[i] === 'x<sup>2</sup>'){
-            node.addEventListener('click', xPower2)
-        }else if(buttonArr[i] === '&radic;x'){
-            node.addEventListener('click', sqrtX)
-        }else if(buttonArr[i] === '%'){
-            node.addEventListener('click', percentage)
-        }else node.addEventListener('click', displayOperation)
-
         inputs.appendChild(node)
     }
 }
@@ -43,7 +76,6 @@ function initiateCalculatorButtons(){
 function displayOperation(e){
     if(isNaN(e.target.value) && !(e.target.value === '.')) operation.value += ' ' + e.target.value + ' '
     else operation.value += e.target.value
-    console.log(operation)
     
     if(operation.value.length > 4 && !percentFlag) displayResult(e)
 }
@@ -101,4 +133,22 @@ function percentage(){
     }
     percentFlag = !percentFlag
 
+}
+
+function addONListener(){
+    for(i = 0; i < buttons.length; i++){
+        if(buttons[i].value === 'ON'){
+            buttons[i].addEventListener('click', activateCalculator)
+        }
+    }
+}
+
+function activateCalculator(){
+    addListeners()
+}
+
+function deactivateCalculator(){
+    removeListeners()
+    operation.value = ''
+    result.value = ''
 }

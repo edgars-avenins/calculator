@@ -1,12 +1,46 @@
+body {
+    background-image: url('mathBackground.jpg')
+}
+
 #calculator {
     width: 250px;
-    height: 350px;
+    height: 500px;
     background-color: darkcyan;
-    margin: 0 auto
+    margin: 40px auto 0px;
+    border-radius: 10%
+}
+
+#operation {
+    margin: 0 10% 0px
+}
+
+#result {
+    margin: 0px 10% 10px
+}
+
+#inputs {
+    width: 90%;
+    margin: 0 3% 0 7%;
+    opacity: 1;
+}
+
+#title {
+    text-align: center
+}
+
+h2 {
+    margin: 10px auto 0px
 }
 
 button {
     height: 45px;
     width: 20%;
-    margin: 5px
+    margin: 5px;
+    border-radius: 40%;
+    background-color: #898989
 }
+
+input {
+    width: 80%;
+}
+
