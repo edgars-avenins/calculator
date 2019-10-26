@@ -1,10 +1,11 @@
-var inputs = document.getElementById('inputs')
-var operation = document.getElementById('operation')
-var result = document.getElementById('result')
+let inputs = document.getElementById('inputs')
+let operation = document.getElementById('operation')
+let result = document.getElementById('result')
+let calculator = document.getElementById('calculator')
 
-var percentFlag = false
+let percentFlag = false
 
-var buttonArr = [
+let buttonArr = [
     'x<sup>2</sup>', '&radic;x', '%', 'C',
     '7', '8', '9', '÷',
     '4', '5', '6', 'X',
@@ -16,7 +17,7 @@ var buttonArr = [
 
 initiateCalculatorButtons()
 
-var buttons = document.getElementsByTagName('button')
+let buttons = document.getElementsByTagName('button')
 addONListener()
 
 
@@ -24,6 +25,8 @@ addONListener()
 
 function addListeners(){
     for (let i = 0; i < buttons.length; i++) {
+        calculator.style = 'box-shadow: 20px -12px 20px 13px green;'
+        buttons[i].style.color = 'rgba(0,0,0,1)'
         if(buttons[i].value === '='){
             buttons[i].addEventListener('click', displayResult)
         }else if(buttons[i].value === 'C'){
@@ -35,7 +38,10 @@ function addListeners(){
         }else if(buttons[i].value === '%'){
             buttons[i].addEventListener('click', percentage)
         }else if(buttons[i].value === 'OFF'){
+            buttons[i].classList.add('off-button')
             buttons[i].addEventListener('click', deactivateCalculator)
+        }else if(buttons[i].value === 'ON'){
+            buttons[i].classList.remove('on-button')
         }
         else buttons[i].addEventListener('click', displayOperation)
     }
@@ -43,6 +49,8 @@ function addListeners(){
 
 function removeListeners(){
     for (let i = 0; i < buttons.length; i++) {
+        calculator.style = 'box-shadow: 20px -12px 20px 13px crimson;'
+        buttons[i].style.color = 'rgba(0,0,0,0)'
         if(buttons[i].value === '='){
             buttons[i].removeEventListener('click', displayResult)
         }else if(buttons[i].value === 'C'){
@@ -54,7 +62,10 @@ function removeListeners(){
         }else if(buttons[i].value === '%'){
             buttons[i].removeEventListener('click', percentage)
         }else if(buttons[i].value === 'OFF'){
+            buttons[i].classList.remove('off-button')
             buttons[i].removeEventListener('click', deactivateCalculator)
+        }else if(buttons[i].value === 'ON'){
+            buttons[i].classList.add('on-button')
         }
         else buttons[i].removeEventListener('click', displayOperation)
     }
@@ -63,7 +74,7 @@ function removeListeners(){
 function initiateCalculatorButtons(){
 
     for (let i = 0; i < buttonArr.length; i++) {
-        var node = document.createElement('button')
+        let node = document.createElement('button')
 
         if(buttonArr[i] === '÷') node.value = '/'
         else if(buttonArr[i] === 'X') node.value = '*'
@@ -138,6 +149,8 @@ function percentage(){
 function addONListener(){
     for(i = 0; i < buttons.length; i++){
         if(buttons[i].value === 'ON'){
+            calculator.style = 'box-shadow: 20px -12px 20px 13px crimson;'
+            buttons[i].classList.add('on-button')
             buttons[i].addEventListener('click', activateCalculator)
         }
     }
